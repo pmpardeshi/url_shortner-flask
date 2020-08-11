@@ -1,0 +1,7 @@
+route - 
+routes
+
+app is created as a instance of Flask class givin __name__ as arguments 
+
+@app.route decorates the function that actualky gets the work done
+
