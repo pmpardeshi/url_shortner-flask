@@ -1,7 +1,51 @@
 route - 
 routes
 
-app is created as a instance of Flask class givin __name__ as arguments 
+app is created as a instance of Flask class givin __name__ as arguments
 
-@app.route decorates the function that actualky gets the work done
+route is defined then useing this app var by decorators
+
+@app.route(/url path)
+
+this decorators decorate the actual python function 
+
+these function names may or may not match the name of the path.
+
+these are simple funvtions capable of returning strings and object but thats not what we want, we want to return the html file 
+thus we have to take help of another flask module called render_template
+we can provide html file as args to this function and return this function . it will display the html files given to it in browser. we have to explicitly import it from flask .
+
+we can also add parameters to render template to access them in html file. flask uses jinja templates to render html files
+
+by default we have to make folder named templates and put all html files in it. for this function to automatically access them. default templates function can be changed but not advised
+
+there  are multiple ways to run a flask app , 
+for now lets go with command line
+from command line - 
+export FLASK_ENV=devlopment // to auto update when changes are made
+flask run
+
+by deafualt flask looks for app.py for running but if you have main file named other than 
+app.py use following command without .py before running flask
+
+export Flask_App=<file name>
+export Flask_App=hello
+
+$ flask run * Environment: development
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-220-606
+ * Detected change in '/home/pmpardeshi/pypractice/flask_essential/files/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-220-606
+
+it should look like this it will restart itself for every change made in app 
+if we do not export FLASK_ENV=development
+then for every change we have to stop the server and restart it again
+
+
+
 

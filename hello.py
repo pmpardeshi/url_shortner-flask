@@ -10,4 +10,4 @@ def index():
 
 @app.route('/about')
 def about():
-	returtn "this is a url shortner"
+	return "this is a url shortner"
