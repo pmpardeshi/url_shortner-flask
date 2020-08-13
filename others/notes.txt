@@ -11,14 +11,6 @@ this decorators decorate the actual python function
 
 these function names may or may not match the name of the path.
 
-these are simple funvtions capable of returning strings and object but thats not what we want, we want to return the html file 
-thus we have to take help of another flask module called render_template
-we can provide html file as args to this function and return this function . it will display the html files given to it in browser. we have to explicitly import it from flask .
-
-we can also add parameters to render template to access them in html file. flask uses jinja templates to render html files
-
-by default we have to make folder named templates and put all html files in it. for this function to automatically access them. default templates function can be changed but not advised
-
 there  are multiple ways to run a flask app , 
 for now lets go with command line
 from command line - 
@@ -48,4 +40,51 @@ then for every change we have to stop the server and restart it again
 
 
 
+these are simple funvtions capable of returning strings and object but thats not what we want, we want to return the html file 
+thus we have to take help of another flask module called render_template
+we can provide html file as args to this function and return this function . it will display the html files given to it in browser. we have to explicitly import it from flask .
+
+we can also add parameters to render template to access them in html file. flask uses jinja templates to render html files
+
+by default we have to make folder named templates and put all html files in it. for this function to automatically access them. default templates function can be changed but not advised
+
+to access variable paased by reder_template function we have to use {{ var_name }}.
+also we can excute code in html using
+{% code %} and add comments in html file by {# comment #} as html comments are not supported by jinja template
+
+forms - 
+flask uses wtforms html forms can also be used but wtforms have significant advantage for security and they are pretty simple as well and can be validated easily. 
+
+wtforms get confusing if multiple forms are at same page so its not advised as validation error in one form can cause error message in all the forms confusing the end user
+
+you can define forms in same file but it is good practice to use modular approach. create another python files for forms
+
+for using wtforms in flask we have to use three modules
+flask_wtf , wtforms and wtforms.validators
+these modules do not provide form elements rather they provide there classes , using which we create a objects which jinja templatebrenders in form elements
+
+from flask_wtf import FlaskForm
+
+for every form we create a class inside which its components are defined . these classes are extended/inherited from FlaskForm
+
+the componenets like StringField PasswordField SubmitField is provided by wtforms module they are all classes following camelcase
+to actually create a textbox we have to create there object then access it in our function or html page
+
+while wtforms.validators provide form validators
+they as well only provide classes
+
+we have to create object of each feild with a lable as first argument , and list of validators classes. note that we have to pass the constructor of validation classes
+
+import these classes in our app file and creetae the object of form class and pass it as argument to the template
+
+IN html files first declare a hidden tag it validates the csrpf token its same as the the hidden key of flask app
+
+{{ formobject.var.lable()}} - creates label for the field
+{{ formobject.var }} - creates the feild
+{{ formobject.var.errors }} - stores errors of the field
+
+() - may or may not be used . it is used if we have to put some attributes inside element. 
+
+give no action to form that is let form come back to same page. after that use form.validate_on_submit() 
+this method will validate the form on server side
 
